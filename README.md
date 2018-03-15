@@ -15,3 +15,10 @@ $ git clone https://github.com/EC-CUBE/ec-cube
 ```
 $ docker-compose up
 ```
+
+
+## 開発方法
+
+### IntelliJ に xdebug導入
+
+![](./.resouces/remote_debug.png)
