@@ -1,0 +1,28 @@
+version: "2"
+services:
+  db:
+    image: mysql:latest
+    environment:
+      - MYSQL_ROOT_PASSWORD=password
+      - MYSQL_DATABASE=cube3_dev
+      - MYSQL_USER=cube3_dev_user
+      - MYSQL_PASSWORD=password
+    ports:
+      - 3306:3306
+  eccube3:
+    build: ./env
+    ports:
+      - 8080:80
+    links:
+      - db
+      - mailcatcher
+    depends_on:
+      - db
+      - mailcatcher
+    volumes:
+      - ./ec-cube:/var/www
+  mailcatcher:
+    image: schickling/mailcatcher
+    ports:
+      - 1080:1080
+      - 1025:1025
