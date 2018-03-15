@@ -28,6 +28,12 @@ $ docker-compose up
 
 ![](./.resources/upload-plugin.jpg)
 
+プラグインのアーカイブファイルは下記のコマンドで作成する事ができます。
+
+```
+$ ./archive.sh
+```
+
 ### ビルドし直した時/うまく起動しなくなったのでやり直したい時
 
 1. ec-cube/app/Pluginを空にする
