@@ -21,6 +21,7 @@ services:
       - mailcatcher
     volumes:
       - ./ec-cube:/var/www
+#    entrypoint: ''
   mailcatcher:
     image: schickling/mailcatcher
     ports:
