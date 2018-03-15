@@ -1,4 +1,4 @@
-FROM php:7.1-apache
+FROM php:7.2.3-apache
 
 # Xdebug の設定に関して
 # https://blog.philipphauer.de/debug-php-docker-container-idea-phpstorm/
@@ -13,7 +13,7 @@ RUN apt-get update \
         && docker-php-ext-install -j$(nproc) mbstring zip gd xml pdo pdo_pgsql pdo_mysql soap \
         && rm -r /var/lib/apt/lists/*
 
-RUN pecl install xdebug-2.5.5 && docker-php-ext-enable xdebug
+RUN pecl install xdebug && docker-php-ext-enable xdebug
 RUN echo 'zend_extension="/usr/local/lib/php/extensions/no-debug-non-zts-20151012/xdebug.so"' >> /usr/local/etc/php/php.ini
 RUN echo 'xdebug.remote_port=9000' >> /usr/local/etc/php/php.ini
 RUN echo 'xdebug.remote_enable=1' >> /usr/local/etc/php/php.ini
