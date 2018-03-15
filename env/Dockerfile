@@ -1,7 +1,7 @@
 FROM php:7.2.3-apache
 
 # Xdebug の設定に関して
-# https://blog.philipphauer.de/debug-php-docker-container-idea-phpstorm/
+# http://blog.shin1x1.com/entry/setup-test-and-debug-on-phpstorm-and-docker-for-mac
 
 ENV COMPOSER_ALLOW_SUPERUSER=1
 ENV PGUSER cube3_dev_user
