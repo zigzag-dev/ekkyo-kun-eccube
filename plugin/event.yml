@@ -1,5 +1,3 @@
-admin.product.category.index.initialize:
-    - [onAdminProductCategoryIndexInit, NORMAL]
 
 front.product.detail.initialize:
     - [onFrontProductDetailInit, NORMAL]

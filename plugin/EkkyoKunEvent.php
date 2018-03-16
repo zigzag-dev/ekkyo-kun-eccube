@@ -32,9 +32,4 @@ class EkkyoKunEvent
         $source = str_replace($search, $replace, $event->getSource());
         $event->setSource($source);
     }
-
-    public function onAdminProductCategoryIndexInit(EventArgs $event)
-    {
-        dump(111);
-    }
 }
