@@ -1,11 +1,6 @@
-name: 商品詳細ページレイアウト
-event: SSProductDetailPage
-code: SSProductDetailPage
-
+name: worldshopping.checkoutプラグイン
+code: EkkyoKun
 version: 1.0.0
-
-service: 
-    - SSProductDetailPageProvider
-
 orm.path:
-    - /Resource/doctrine
+  - /Resource/doctrine
+event: EkkyoKunEvent
