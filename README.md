@@ -26,7 +26,7 @@ $ docker-compose up
 
 ログインは admin:password で行います。次に オーナーズストア > プラグイン > プラグイン一覧 > プラグインのアップロードはこちら をたどります。下記の画面からアップロードしプラグインを有効化するとプラグインが動作するようになります。
 
-![](./.resources/upload-plugin.jpg)
+![](./.resources/images/upload-plugin.jpg)
 
 プラグインのアーカイブファイルは下記のコマンドで作成する事ができます。
 
@@ -42,6 +42,16 @@ $ ./archive.sh
 
 ## 開発方法
 
-### IDEAのRemote Debugを設定する
+### プラグインをアップロードせずに開発する
 
-![](./.resources/xdebug.jpg)
+`ec-cube/app/Plugin`にて下記のコマンドを実行します。
+
+```
+$ ln -s ../../../plugin/ EkkyoKun
+```
+
+その後、IDEAで下記のようにリモートデバッグの設定を行います。
+
+![](./.resources/images/xdebug-plugin.jpg)
+
+これで、plugin側でセットしたブレークポイントでステップ実行等が可能になります。

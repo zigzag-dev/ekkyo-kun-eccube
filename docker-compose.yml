@@ -21,6 +21,7 @@ services:
       - mailcatcher
     volumes:
       - ./ec-cube:/var/www
+      - ./plugin:/var/plugin
 #    entrypoint: ''
   mailcatcher:
     image: schickling/mailcatcher

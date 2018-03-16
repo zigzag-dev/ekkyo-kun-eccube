@@ -3,7 +3,6 @@
 namespace Plugin\EkkyoKun;
 
 use Eccube\Event\EventArgs;
-use Eccube\Event\TemplateEvent;
 
 class EkkyoKunEvent
 {
@@ -15,7 +14,7 @@ class EkkyoKunEvent
         $this->app = $app;
     }
 
-    public function onFrontProductDetailInit(TemplateEvent $event)
+    public function onFrontProductDetailInit(EventArgs $event)
     {
         $product = $event->getArgument('Product');
         dump($product->getClassName1());
