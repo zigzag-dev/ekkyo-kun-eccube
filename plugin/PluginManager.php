@@ -1,6 +1,6 @@
 <?php
 
-namespace Plugin\CategoryContent;
+namespace Plugin\EkkyoKun;
 
 use Eccube\Plugin\AbstractPluginManager;
 

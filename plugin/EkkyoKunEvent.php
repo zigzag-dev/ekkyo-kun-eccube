@@ -23,13 +23,5 @@ class EkkyoKunEvent
         dump($product->getClassCategories2(1));
         dump($product->getClassCategories());
 
-        // twigコードにカテゴリコンテンツを挿入
-        $html = '';
-        $html .= '<ul hidden id="zigzag-data">';
-        $html .= '</ul>';
-        $search = '<form action="?" method="post" id="form1" name="form1">';
-        $replace = $search.$html;
-        $source = str_replace($search, $replace, $event->getSource());
-        $event->setSource($source);
     }
 }

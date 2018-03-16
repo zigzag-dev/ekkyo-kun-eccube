@@ -1,6 +1,6 @@
 <?php
 
-namespace Plugin\CategoryContent\Repository;
+namespace Plugin\EkkyoKun\Repository;
 
 use Doctrine\ORM\EntityRepository;
 
