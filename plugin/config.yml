@@ -4,3 +4,15 @@ version: 1.0.0
 orm.path:
   - /Resource/doctrine
 event: EkkyoKunEvent
+service:
+  - EkkyoKunServiceProvider
+const:
+  sizes:
+    - size
+    - サイズ
+    - 大きさ
+  colors:
+    - color
+    - colour
+    - 色
+    - 配色
