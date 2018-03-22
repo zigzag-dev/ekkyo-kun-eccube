@@ -1,0 +1,64 @@
+{% extends 'default_frame.twig' %}
+
+{% set menus = ['store', 'plugin', 'plugin_list'] %}
+
+{% block title %}EkkyoKun画面{% endblock %}
+{% block sub_title %}{% endblock %}
+
+{% form_theme form 'Form/bootstrap_3_horizontal_layout.html.twig' %}
+
+{% block main %}
+    <form class="form-horizontal" method="post" action="{{ url('plugin_EkkyoKun_config') }}">
+        {{ form_widget(form._token) }}
+        <div class="row" id="aside_wrap">
+            <div  class="col-md-9">
+                <div class="alert alert-warning" role="alert">
+                    <p>本サービスのご利用には申込みが必要です。
+                    <a href="#" class="btn btn-default btn-sm">お申し込みはこちら</a></p>
+                </div>
+                <div class="box">
+                    <div class="box-header">
+                        <h3 class="box-title">EkkyoKun設定</h3>
+                    </div><!-- /.box-header -->
+                    <div class="box-body form-horizontal">
+                        <div class="form-group">
+                            <label class="col-sm-3 control-label">version</label>
+                            <div class="col-sm-9">
+                                <span>1.0.0</span>
+                            </div>
+                        </div>
+                        <div class="form-group {% if form.name.vars.errors|length %} has-error {% endif %}">
+                            <label class="col-sm-3 control-label">トークン<span class="text-danger">*</span></label>
+                            <div class="col-sm-9">
+                                {#{{ form_widget(form.name) }}#}
+                                {#{{ form_errors(form.name) }}#}
+                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="トークン">
+                                <p class="help-block"><small>弊社からお知らせしたトークンを入力ください。</small></p>
+                            </div>
+                        </div>
+                        <div class="form-group {% if form.name.vars.errors|length %} has-error {% endif %}">
+                            <label class="col-sm-3 control-label">除外国<span class="text-danger">*</span></label>
+                            <div class="col-sm-9">
+                                {{ form_widget(form.name) }}
+                                {{ form_errors(form.name) }}
+                            </div>
+                        </div>
+                    </div><!-- /.box-body -->
+                </div><!-- /.box -->
+            </div><!-- /.col -->
+            <div class="col-md-3" id="aside_column">
+                <div id="common_box" class="col_inner">
+                    <div id="common_button_box" class="box no-header">
+                        <div id="common_button_box__body" class="box-body">
+                            <div id="common_button_box__edit_button" class="row text-center">
+                                <div class="col-sm-6 col-sm-offset-3 col-md-12 col-md-offset-0">
+                                    <button class="btn btn-primary btn-block btn-lg" type="submit">設定</button>
+                                </div>
+                            </div>
+                        </div><!-- /.box-body -->
+                    </div><!-- /.box -->
+                </div>
+            </div><!-- /.col -->
+        </div>
+    </form>
+{% endblock main %}

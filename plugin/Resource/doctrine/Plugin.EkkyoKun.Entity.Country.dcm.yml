@@ -1,0 +1,32 @@
+Plugin\EkkyoKun\Entity\Country:
+    type: entity
+    table: plg_ekkyokun_countries
+    repositoryClass: Plugin\EkkyoKun\Repository\CountryRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            unsigned: true
+            id: true
+            generator:
+                strategy: AUTO
+            options:
+                unsigned: true
+    fields:
+        code:
+            type: string
+            length: 4
+            nullable: true
+        name:
+            type: string
+            length: 32
+            nullable: true
+        name_en:
+            type: string
+            length: 32
+            nullable: true
+        deny:
+            type: boolean
+            options:
+                default: 'false'
+    lifecycleCallbacks: {  }

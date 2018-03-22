@@ -1,6 +1,7 @@
-
-front.product.detail.initialize:
-    - [onFrontProductDetailInit, NORMAL]
-
 Product/detail.twig:
     - [onRenderProductDetail, NORMAL]
+
+#Admin/Product/product.twig:
+#    - [onRenderAdminProductDetail, NORMAL]
+admin.product.edit.initialize:
+    - [onAdminProductDetailInit, NORMAL]

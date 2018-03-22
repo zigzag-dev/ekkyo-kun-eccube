@@ -1,0 +1,28 @@
+Plugin\EkkyoKun\Entity\Product:
+    type: entity
+    table: plg_ekkyokun_product
+    repositoryClass: Plugin\EkkyoKun\Repository\ProductRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            id: true
+            column: id
+            options:
+                unsigned: true
+    fields:
+        deny:
+            type: boolean
+            options:
+                default: 'false'
+    oneToOne:
+        Product:
+            targetEntity: Eccube\Entity\Product
+            inversedBy: EkkyoKunProduct
+            joinColumn:
+                name: product_id
+                referencedColumnName: product_id
+                nullable: false
+                options:
+                  unsigned: true
+    lifecycleCallbacks: {  }
