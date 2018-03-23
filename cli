@@ -3,16 +3,16 @@
 BASE_DIR=$(cd $(dirname $0);pwd)
 CMD=$1
 
-if [ "$CMD" = 'archive' ]; then
+if [ "$CMD" = "archive" ]; then
 	cd $BASE_DIR/plugin
 	tar -zcvf $BASE_DIR/ekkyo-kun.tar.gz *
-elif [ "$CMD" = 'install' ]; then
+elif [ "$CMD" = "install" ]; then
 	cd $BASE_DIR/ec-cube/app/Plugin
 	unlink EkkyoKun || true
 	ln -s ../../../plugin EkkyoKun
 	docker-compose run eccube3 bash -c "php app/console plugin:develop install --code EkkyoKun"
 	docker-compose run eccube3 bash -c "php app/console plugin:develop enable --code EkkyoKun"
-elif [ "$CMD" = 'uninstall' ]; then
+elif [ "$CMD" = "uninstall" ]; then
 	cd $BASE_DIR/ec-cube/app/Plugin
 	docker-compose run eccube3 bash -c "php app/console plugin:develop disable --code EkkyoKun"
 	docker-compose run eccube3 bash -c "php app/console plugin:develop uninstall --code EkkyoKun"
