@@ -58,8 +58,11 @@ $ ln -s ../../../plugin/ EkkyoKun
 
 #### プラグインのインストールと有効化
 
+下記のコマンドでプラグインのインストールおよびアンインストールができます。
+
 ```
-# Dockerの中で
-$ php app/console plugin:develop install --code EkkyoKun
-$ php app/console plugin:develop enable --code EkkyoKun
+# インストール・有効化
+$ ./cli install 
+# アンインストール・無効化
+$ ./cli uninstall
 ```

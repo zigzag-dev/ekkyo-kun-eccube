@@ -28,4 +28,4 @@ RUN useradd -ms /bin/bash ${PGUSER} \
 
 EXPOSE 80
 WORKDIR /var/www
-ENTRYPOINT /entrypoint.sh
+CMD /entrypoint.sh
