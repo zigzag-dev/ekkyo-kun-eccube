@@ -55,3 +55,11 @@ $ ln -s ../../../plugin/ EkkyoKun
 ![](./.resources/images/xdebug-plugin.jpg)
 
 これで、plugin側でセットしたブレークポイントでステップ実行等が可能になります。
+
+#### プラグインのインストールと有効化
+
+```
+# Dockerの中で
+$ php app/console plugin:develop install --code EkkyoKun
+$ php app/console plugin:develop enable --code EkkyoKun
+```
