@@ -163,7 +163,7 @@ EOS;
      *
      * @return string
      */
-    private function getDataAttribute($key)
+    public function getDataAttribute($key)
     {
         if (in_array(strtolower($key), $this->getSizeKeys())) {
             return 'data-size';
