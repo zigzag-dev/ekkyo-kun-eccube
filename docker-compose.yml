@@ -22,6 +22,8 @@ services:
     volumes:
       - ./ec-cube:/var/www
       - ./plugin:/var/plugin
+    environment:
+      PHP_IDE_CONFIG: "serverName=Docker"
   mailcatcher:
     image: schickling/mailcatcher
     ports:

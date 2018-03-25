@@ -31,7 +31,7 @@ $ docker-compose up
 プラグインのアーカイブファイルは下記のコマンドで作成する事ができます。
 
 ```
-$ ./archive.sh
+$ ./cli archive
 ```
 
 ### ビルドし直した時/うまく起動しなくなったのでやり直したい時
@@ -42,19 +42,15 @@ $ ./archive.sh
 
 ## 開発方法
 
-### プラグインをアップロードせずに開発する
+### デバッグ設定
 
-`ec-cube/app/Plugin`にて下記のコマンドを実行します。
-
-```
-$ ln -s ../../../plugin/ EkkyoKun
-```
-
-その後、IDEAで下記のようにリモートデバッグの設定を行います。
+IDEAで下記のようにリモートデバッグの設定を行います。
 
 ![](./.resources/images/xdebug-plugin.jpg)
 
 これで、plugin側でセットしたブレークポイントでステップ実行等が可能になります。
+
+なお、サーバー設定の名前は必ず`Docker`にするようにしてください。docker-compose.ymlのenvironmentにてPHP_IDE_CONFIGで`serverName=Docker`を指定しています。この設定はPHPUnit実行時のデバッグで必要になります。
 
 #### プラグインのインストールと有効化
 
