@@ -26,6 +26,7 @@ class EkkyoKunConfigType extends AbstractType
     {
         $countries = array();
         $selectedCountries = array();
+
         /**
          * @var Country $Country
          */
