@@ -18,7 +18,11 @@ elif [ "$CMD" = "uninstall" ]; then
 	docker-compose run eccube3 bash -c "php app/console plugin:develop uninstall --code EkkyoKun"
 	unlink EkkyoKun
 elif [ "$CMD" = "test" ]; then
-	docker-compose run eccube3 bash -c "vendor/bin/phpunit app/Plugin/EkkyoKun"
+	PARAM="app/Plugin/EkkyoKun"
+	if [ ! -z $2 ]; then
+		PARAM=$2
+	fi
+	docker-compose run eccube3 bash -c "vendor/bin/phpunit $PARAM"
 else
 	echo "Usage: cli <command>"
 fi
