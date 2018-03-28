@@ -38,7 +38,8 @@ class EkkyoKunConfigTypeTest extends \Eccube\Tests\Form\Type\AbstractTypeTestCas
     public function testValidData()
     {
         $formData = array(
-            'name' => array( 'US' )
+            'name_token' => 'xxxx',
+            'name_countries' => array( 'US' )
         );
         $this->form->submit($formData);
         $this->assertTrue($this->form->isValid());
@@ -47,7 +48,7 @@ class EkkyoKunConfigTypeTest extends \Eccube\Tests\Form\Type\AbstractTypeTestCas
     public function testInvalidData()
     {
         $formData = array(
-            'name' => array( 'AE' )
+            'name_countries' => array( 'xx' )
         );
         $this->form->submit($formData);
         $this->assertFalse($this->form->isValid());

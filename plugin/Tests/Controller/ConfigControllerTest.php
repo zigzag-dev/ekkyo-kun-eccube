@@ -14,4 +14,17 @@ class ConfigControllerTest extends AbstractAdminWebTestCase
         $this->client->request('GET', "{$adminRoot}plugin/ekkyokun/config");
         $this->assertTrue($this->client->getResponse()->isSuccessful());
     }
+
+    public function testRoutingAdminIndexPost()
+    {
+        $adminRoot = $this->app['url_generator']->generate('admin_homepage');
+        $this->client->request('POST', "{$adminRoot}plugin/ekkyokun/config", array('ekkyokun_config_form' =>
+            array(
+                '_token' => 'dummy',
+                'name_token' => 'xxxx',
+                'name_countries' => array( 'US' )
+            )
+        ));
+        $this->assertTrue($this->client->getResponse()->isSuccessful());
+    }
 }
