@@ -2,8 +2,6 @@
 
 namespace Plugin\EkkyoKun\Entity;
 
-use Doctrine\ORM\Mapping as ORM;
-
 /**
  * Product
  */
@@ -17,13 +15,7 @@ class Product extends \Eccube\Entity\AbstractEntity
     /**
      * @var boolean
      */
-    private $deny = 'false';
-
-    /**
-     * @var \Eccube\Entity\Product
-     */
-    private $Product;
-
+    private $deny = false;
 
     /**
      * Set id
@@ -69,28 +61,5 @@ class Product extends \Eccube\Entity\AbstractEntity
     public function getDeny()
     {
         return $this->deny;
-    }
-
-    /**
-     * Set Product
-     *
-     * @param \Eccube\Entity\Product $product
-     * @return Product
-     */
-    public function setProduct(\Eccube\Entity\Product $product)
-    {
-        $this->Product = $product;
-
-        return $this;
-    }
-
-    /**
-     * Get Product
-     *
-     * @return \Eccube\Entity\Product 
-     */
-    public function getProduct()
-    {
-        return $this->Product;
     }
 }

@@ -1,7 +1,6 @@
 Product/detail.twig:
     - [onRenderProductDetail, NORMAL]
-
-#Admin/Product/product.twig:
-#    - [onRenderAdminProductDetail, NORMAL]
 admin.product.edit.initialize:
     - [onAdminProductDetailInit, NORMAL]
+admin.product.edit.complete:
+    - [onAdminProductDetailComplete, NORMAL]

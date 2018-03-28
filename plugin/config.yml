@@ -7,6 +7,12 @@ event: EkkyoKunEvent
 service:
   - EkkyoKunServiceProvider
 const:
+  url:
+    signup: https://www.worldshopping.biz/checkout
+    inquiry: https://www.worldshopping.biz/mailform
+    api:
+      dev: https://checkout-api.worldshopping.jp/dev/script
+      v1: https://checkout-api.worldshopping.jp/v1/script
   sizes:
     - size
     - サイズ

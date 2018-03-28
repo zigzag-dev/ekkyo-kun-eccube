@@ -18,7 +18,9 @@ use Eccube\Entity\ProductClass;
 
 class EkkyoKunService
 {
-    /** @var \Eccube\Application */
+    /**
+     * @var \Eccube\Application
+     */
     public $app;
 
     public function __construct(Application $app)
@@ -27,10 +29,22 @@ class EkkyoKunService
     }
 
     /**
+     * tokenからAPIタグを発行し返す
+     *
+     * @param $token
+     * @return string
+     */
+    public function makeApiTag($token)
+    {
+        $src = $this->app['config']['EkkyoKun']['const']['url']['api']['v1'];
+        $src .= '?token=' . $token;
+        return '<script type="text/javascript" charset="UTF-8" async src="' . $src . '"></script>';
+    }
+
+    /**
      * Productからチェックアウトソースを作成し返す
      *
      * @param Product $Product
-     *
      * @return string
      */
     public function makeCheckOutSource(Product $Product)
@@ -108,7 +122,6 @@ EOS;
 
     /**
      * @param ProductClass $ProductClass
-     *
      * @return string|null
      */
     private function getSku(ProductClass $ProductClass)
@@ -119,35 +132,20 @@ EOS;
             $formattedPrice = number_format($price);
 
             $stock = $ProductClass->getStockUnlimited();
-            if ($stock === 0) {
+            if (empty($stock)) {
                 $stock = $ProductClass->getStock();
             }
+            /** @var ClassCategory $ClassCategory1 */
+            $ClassCategory1 = $ProductClass->getClassCategory1();
+            $ClassCategory2 = $ProductClass->getClassCategory2();
 
             $sku = '';
             $sku .= '<dl>';
-            /**
-             * @var ClassCategory $ClassCategory1
-             */
-            $ClassCategory1 = $ProductClass->getClassCategory1();
             if (!empty($ClassCategory1)) {
-                $key = $ClassCategory1->getClassName();
-                $val = $ClassCategory1->getName();
-
-                $attribute = $this->getDataAttribute($key);
-                $attribute = !empty($attribute) ? ' ' . $attribute : '';
-                $sku .= '<dt>' . $key . '</dt><dd'.$attribute.'>' . $val . '</dd>';
+                $sku .= $this->getSkuClassCategory($ClassCategory1);
             }
-            /**
-             * @var ClassCategory $ClassCategory2
-             */
-            $ClassCategory2 = $ProductClass->getClassCategory1();
             if (!empty($ClassCategory2)) {
-                $key = $ClassCategory2->getClassName();
-                $val = $ClassCategory2->getName();
-
-                $attribute = $this->getDataAttribute($key);
-                $attribute = !empty($attribute) ? ' ' . $attribute : '';
-                $sku .= '<dt>' . $key . '</dt><dd'.$attribute.'>' . $val . '</dd>';
+                $sku .= $this->getSkuClassCategory($ClassCategory2);
             }
             $sku .= '<dt>price</dt><dd data-price="' . $price . '">' . $formattedPrice . '</dd>';
             $sku .= '<dt>stock</dt><dd data-stock="' . $stock . '">' . $stock . '</dd>';
@@ -159,8 +157,22 @@ EOS;
     }
 
     /**
+     * @param ClassCategory $ClassCategory
+     * @return string
+     */
+    public function getSkuClassCategory(ClassCategory $ClassCategory)
+    {
+        $key = $ClassCategory->getClassName();
+        $val = $ClassCategory->getName();
+
+        $attribute = $this->getDataAttribute($key);
+        $attribute = !empty($attribute) ? ' ' . $attribute : '';
+
+        return '<dt>' . $key . '</dt><dd'.$attribute.'>' . $val . '</dd>';
+
+    }
+    /**
      * @param string $key
-     *
      * @return string
      */
     public function getDataAttribute($key)

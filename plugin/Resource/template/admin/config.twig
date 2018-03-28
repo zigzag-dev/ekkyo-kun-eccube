@@ -12,35 +12,33 @@
         {{ form_widget(form._token) }}
         <div class="row" id="aside_wrap">
             <div  class="col-md-9">
+                {% if token is null %}
+                    <div class="alert alert-warning" role="alert">
+                        <p>本サービスのご利用には申込みが必要です。
+                            <a href="{{ signup_url }}" class="btn btn-default btn-sm" target="_blank">お申し込みはこちら</a></p>
+                    </div>
+                {% endif %}
                 <div class="alert alert-warning" role="alert">
-                    <p>本サービスのご利用には申込みが必要です。
-                    <a href="#" class="btn btn-default btn-sm">お申し込みはこちら</a></p>
+                    <p>本サービスに関してのお問い合わせはこちらからお願いします。
+                        <a href="{{ inquiry_url }}" class="btn btn-default btn-sm" target="_blank">お問い合わせはこちら</a></p>
                 </div>
                 <div class="box">
                     <div class="box-header">
                         <h3 class="box-title">EkkyoKun設定</h3>
                     </div><!-- /.box-header -->
                     <div class="box-body form-horizontal">
-                        <div class="form-group">
-                            <label class="col-sm-3 control-label">version</label>
-                            <div class="col-sm-9">
-                                <span>1.0.0</span>
-                            </div>
-                        </div>
-                        <div class="form-group {% if form.name.vars.errors|length %} has-error {% endif %}">
+                        <div class="form-group {% if form.name_token.vars.errors|length %} has-error {% endif %}">
                             <label class="col-sm-3 control-label">トークン<span class="text-danger">*</span></label>
                             <div class="col-sm-9">
-                                {#{{ form_widget(form.name) }}#}
-                                {#{{ form_errors(form.name) }}#}
-                                <input type="text" class="form-control" id="exampleInputEmail1" placeholder="トークン">
-                                <p class="help-block"><small>弊社からお知らせしたトークンを入力ください。</small></p>
+                                {{ form_widget(form.name_token) }}
+                                {{ form_errors(form.name_token) }}
                             </div>
                         </div>
-                        <div class="form-group {% if form.name.vars.errors|length %} has-error {% endif %}">
+                        <div class="form-group {% if form.name_countries.vars.errors|length %} has-error {% endif %}">
                             <label class="col-sm-3 control-label">除外国<span class="text-danger">*</span></label>
                             <div class="col-sm-9">
-                                {{ form_widget(form.name) }}
-                                {{ form_errors(form.name) }}
+                                {{ form_widget(form.name_countries) }}
+                                {{ form_errors(form.name_countries) }}
                             </div>
                         </div>
                     </div><!-- /.box-body -->

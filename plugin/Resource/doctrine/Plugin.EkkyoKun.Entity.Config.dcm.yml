@@ -1,0 +1,23 @@
+Plugin\EkkyoKun\Entity\Config:
+    type: entity
+    table: plg_ekkyokun_configs
+    repositoryClass: Plugin\EkkyoKun\Repository\ConfigRepository
+    id:
+        id:
+            type: integer
+            nullable: false
+            id: true
+            column: id
+            generator:
+                strategy: AUTO
+            options:
+                unsigned: true
+    fields:
+        key:
+            type: string
+            length: 32
+        value:
+            type: string
+            length: 255
+            nullable: true
+    lifecycleCallbacks: {  }

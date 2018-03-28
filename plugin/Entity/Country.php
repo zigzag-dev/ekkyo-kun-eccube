@@ -11,8 +11,20 @@ class Country extends \Eccube\Entity\AbstractEntity
      * @var integer
      */
     private $id;
+
+    /**
+     * @var string
+     */
     private $code;
+
+    /**
+     * @var string
+     */
     private $name;
+
+    /**
+     * @var string
+     */
     private $name_en;
 
     /**
@@ -21,7 +33,9 @@ class Country extends \Eccube\Entity\AbstractEntity
     private $deny;
 
     /**
-     * @return mixed
+     * Get id
+     *
+     * @return integer
      */
     public function getId()
     {
@@ -29,7 +43,9 @@ class Country extends \Eccube\Entity\AbstractEntity
     }
 
     /**
-     * @return mixed
+     * Get code
+     *
+     * @return string
      */
     public function getCode()
     {
@@ -37,15 +53,22 @@ class Country extends \Eccube\Entity\AbstractEntity
     }
 
     /**
-     * @param mixed $code
+     * Set code
+     *
+     * @param string $code
+     * @return Country
      */
     public function setCode($code)
     {
         $this->code = $code;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get name
+     *
+     * @return string
      */
     public function getName()
     {
@@ -53,15 +76,22 @@ class Country extends \Eccube\Entity\AbstractEntity
     }
 
     /**
-     * @param mixed $name
+     * Set name
+     *
+     * @param string $name
+     * @return Country
      */
     public function setName($name)
     {
         $this->name = $name;
+
+        return $this;
     }
 
     /**
-     * @return mixed
+     * Get name_en
+     *
+     * @return string
      */
     public function getNameEn()
     {
@@ -69,11 +99,16 @@ class Country extends \Eccube\Entity\AbstractEntity
     }
 
     /**
-     * @param mixed $name_en
+     * Set name_en
+     *
+     * @param string $name_en
+     * @return Country
      */
     public function setNameEn($name_en)
     {
         $this->name_en = $name_en;
+
+        return $this;
     }
 
     /**
