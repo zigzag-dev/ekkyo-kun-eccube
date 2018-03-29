@@ -13,14 +13,25 @@ class Version20161208000003 extends AbstractMigration
      */
     public function up(Schema $schema)
     {
-        $app = \Eccube\Application::getInstance();
-        $em = $app['orm.em'];
+        if ($this->connection->getDatabasePlatform()->getName() == 'postgresql') {
+            $app = \Eccube\Application::getInstance();
+            $em = $app['orm.em'];
 
-        $config = new Config();
-        $config->setKey('token');
-        $config->setValue(null);
-        $em->persist($config);
-        $em->flush();
+            $config = new Config();
+            $config->setKey('token');
+            $config->setValue(null);
+            $em->persist($config);
+            $em->flush();
+        } else if ($this->connection->getDatabasePlatform()->getName() == 'mysql') {
+            $sql = <<<EOS
+INSERT INTO `plg_ekkyokun_configs`
+(`key`, `value`)
+VALUES (?,?);
+EOS;
+            $this->addSql($sql, array(
+                'token', null,
+            ));
+        }
     }
 
     /**
