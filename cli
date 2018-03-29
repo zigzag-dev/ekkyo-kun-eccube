@@ -5,7 +5,7 @@ CMD=$1
 
 if [ "$CMD" = "archive" ]; then
 	cd "$BASE_DIR/plugin"
-	tar -zcvf "$BASE_DIR/ekkyo-kun.tar.gz" *
+	tar -zcvf "$BASE_DIR/EkkyoKun.tar.gz" *
 elif [ "$CMD" = "install" ]; then
 	cd "$BASE_DIR/ec-cube/app/Plugin"
 	unlink EkkyoKun || true
