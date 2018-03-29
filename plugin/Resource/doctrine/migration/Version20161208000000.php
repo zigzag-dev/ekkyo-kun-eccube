@@ -4,39 +4,29 @@ namespace DoctrineMigrations;
 
 use Doctrine\DBAL\Migrations\AbstractMigration;
 use Doctrine\DBAL\Schema\Schema;
-use Doctrine\DBAL\Types\Type;
+use Plugin\EkkyoKun\Entity\Country;
 
 class Version20161208000000 extends AbstractMigration
 {
-    const TABLE_NAME = 'plg_ekkyokun_countries';
     /**
      * @param Schema $schema
      */
     public function up(Schema $schema)
     {
-        $countries = $this->getCountries();
-        $params = array();
-        $placeholders = array();
-        $a = 1;
-        foreach ($countries as $code => $country) {
-            $params[] = $a;
-            $params[] = substr($code, 0, 2);
-            $params[] = $country['ja'];
-            $params[] = $country['en'];
-            $params[] = 0;
-            $placeholders[] = '(?,?,?,?,?)';
-            $a++;
+        $app = \Eccube\Application::getInstance();
+        $em = $app['orm.em'];
+
+        $defs = $this->getCountryDefs();
+        foreach ($defs as $code => $def) {
+            $country = new Country();
+            $country
+                ->setCode(substr($code, 0, 2))
+                ->setName($def['ja'])
+                ->setNameEn($def['en'])
+                ->setDeny(0);
+            $em->persist($country);
         }
-
-        $tableName = self::TABLE_NAME;
-        $placeholders = implode(',', $placeholders);
-        $sql = <<<EOS
-INSERT INTO `{$tableName}`
-(`id`, `code`, `name`, `name_en`, `deny`)
-VALUES {$placeholders};
-EOS;
-
-        $this->addSql($sql, $params);
+        $em->flush();
     }
 
     /**
@@ -44,12 +34,19 @@ EOS;
      */
     public function down(Schema $schema)
     {
+        $app = \Eccube\Application::getInstance();
+        $em = $app['orm.em'];
+        $countries = $em->getRepository('Plugin\EkkyoKun\Entity\Country')->findAll();
+        foreach ($countries as $country) {
+            $em->remove($country);
+        }
+        $em->flush();
     }
 
     /**
      * @return array
      */
-    private function getCountries()
+    private function getCountryDefs()
     {
         return array(
             'AE-0' => array('en' => 'United Arab Emirates', 'ja' => 'アラブ首長国連邦'),
