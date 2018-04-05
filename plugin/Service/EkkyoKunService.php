@@ -38,7 +38,7 @@ class EkkyoKunService
     {
         $src = $this->app['config']['EkkyoKun']['const']['url']['api']['v1'];
         $src .= '?token=' . $token;
-        return '<script type="text/javascript" charset="UTF-8" async src="' . $src . '"></script>';
+        return '<script type="application/javascript" charset="UTF-8" async src="' . $src . '"></script>';
     }
 
     /**

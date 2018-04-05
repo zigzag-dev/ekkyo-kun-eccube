@@ -63,12 +63,20 @@ class EkkyoKunEvent
         // http://downloads.ec-cube.net/manual/v3/plugin.pdf 35p
         // Twigのキャッシュを効かせるため、
         // 動的な値を表示したい際は変数化しパラメータで渡す
+        $parameters['onLoadZigZag'] = <<<EOS
+<script type="application/javascript">
+function onLoadZigZag() {
+  zigzag.run();
+}
+</script>
+EOS;
         $parameters['apiTag'] = $ekkyokunService->makeApiTag($token);
         $parameters['cos'] = $ekkyokunService->makeCheckOutSource($Product);
         $parameters['denyCountryTag'] = $countryRepository->getDenyCountriesWithTag();
         $event->setParameters($parameters);
 
         $replace = <<<EOS
+{{onLoadZigZag|raw}}
 {{apiTag|raw}}
 {{cos|raw}}
 {{denyCountryTag|raw}}
