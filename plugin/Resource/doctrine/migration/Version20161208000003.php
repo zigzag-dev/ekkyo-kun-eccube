@@ -13,7 +13,8 @@ class Version20161208000003 extends AbstractMigration
      */
     public function up(Schema $schema)
     {
-        if ($this->connection->getDatabasePlatform()->getName() == 'postgresql') {
+        $platform = $this->connection->getDatabasePlatform()->getName();
+        if ($platform === 'postgresql' || $platform === 'sqlite') {
             $app = \Eccube\Application::getInstance();
             $em = $app['orm.em'];
 
@@ -22,7 +23,7 @@ class Version20161208000003 extends AbstractMigration
             $config->setValue(null);
             $em->persist($config);
             $em->flush();
-        } else if ($this->connection->getDatabasePlatform()->getName() == 'mysql') {
+        } elseif ($platform === 'mysql') {
             $sql = <<<EOS
 INSERT INTO `plg_ekkyokun_configs`
 (`key`, `value`)
