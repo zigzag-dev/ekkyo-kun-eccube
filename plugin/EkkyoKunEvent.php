@@ -47,15 +47,21 @@ class EkkyoKunEvent
         $id = $Product->getId();
         /** @var ProductRepository $productRepository */
         $productRepository = $this->app['plugin.ekkyokun.repository.product'];
+        /** @var CountryRepository $countryRepository */
+        $countryRepository = $this->app['plugin.ekkyokun.repository.country'];
 
         /** @var EkkyoKunProduct $EkkyoKunProduct */
         $EkkyoKunProduct = $productRepository->find($id);
         if ($EkkyoKunProduct && $EkkyoKunProduct->getDeny()) {
-            return;
-        }
+            $denyCountryTag = <<<EOS
+<ul hidden id="zigzag-deny-countries">
+<li>ALL</li>
+</ul>
+EOS;
 
-        /** @var CountryRepository $countryRepository */
-        $countryRepository = $this->app['plugin.ekkyokun.repository.country'];
+        } else {
+            $denyCountryTag = $countryRepository->getDenyCountriesWithTag();
+        }
 
         /** @var EkkyoKunService $ekkyokunService */
         $ekkyokunService = $this->app['eccube.plugin.service.ekkyokun'];
@@ -72,7 +78,7 @@ function onLoadZigZag() {
 EOS;
         $parameters['apiTag'] = $ekkyokunService->makeApiTag($token);
         $parameters['cos'] = $ekkyokunService->makeCheckOutSource($Product);
-        $parameters['denyCountryTag'] = $countryRepository->getDenyCountriesWithTag();
+        $parameters['denyCountryTag'] = $denyCountryTag;
         $event->setParameters($parameters);
 
         $replace = <<<EOS
